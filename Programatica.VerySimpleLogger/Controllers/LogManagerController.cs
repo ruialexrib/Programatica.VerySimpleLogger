@@ -30,7 +30,8 @@ namespace Programatica.VerySimpleLogger.Controllers
                                                 Id = s.Id,
                                                 Caller = s.Caller,
                                                 Level = s.Level.ToString(),
-                                                Message = s.Message
+                                                Message = s.Message,
+                                                CreatedDate = s.CreatedDate
                                             });
         }
 
