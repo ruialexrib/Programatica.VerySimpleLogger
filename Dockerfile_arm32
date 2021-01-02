@@ -1,0 +1,31 @@
+# support for arm32 - raspberrypi
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.2-buster-slim-arm32v7 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /app 
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY Programatica.VerySimpleLogger/*.csproj ./Programatica.VerySimpleLogger/
+COPY Programatica.VerySimpleLogger.Data/*.csproj ./Programatica.VerySimpleLogger.Data/
+COPY Programatica.VerySimpleLogger.Data.Migrations/*.csproj ./Programatica.VerySimpleLogger.Data.Migrations/
+
+RUN dotnet restore 
+
+# copy everything else and build app
+COPY Programatica.VerySimpleLogger/. ./Programatica.VerySimpleLogger/
+COPY Programatica.VerySimpleLogger.Data/. ./Programatica.VerySimpleLogger.Data/
+COPY Programatica.VerySimpleLogger.Data.Migrations/. ./Programatica.VerySimpleLogger.Data.Migrations/ 
+
+WORKDIR /app/Programatica.VerySimpleLogger
+RUN dotnet publish -c Release -o out 
+
+FROM base AS final
+WORKDIR /app 
+
+COPY --from=build /app/Programatica.VerySimpleLogger/out ./
+ENTRYPOINT ["dotnet", "Programatica.VerySimpleLogger.dll"]
+
