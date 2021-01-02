@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Programatica.VerySimpleLogger.Client
 {
-    public static class VerySimpleLogger
+    public static class VerySimpleLoggerClient
     {
         public static string ServerUrl { get; set; }
 

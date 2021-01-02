@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Programatica.VerySimpleLogger.Client\Programatica.VerySimpleLogger.Client.csproj" />
+    <PackageReference Include="Programatica.VerySimpleLogger.Client" Version="1.0.3" />
   </ItemGroup>
 
 </Project>

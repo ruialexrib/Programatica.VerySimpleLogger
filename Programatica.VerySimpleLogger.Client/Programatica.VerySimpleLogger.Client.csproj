@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>ruialexrib</Authors>
+    <Company>Programatica Software</Company>
+    <Description>A very, very simple logger</Description>
+    <Copyright>Copyright ©  Programatica Software 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ruialexrib/Programatica.VerySimpleLogger</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ruialexrib/Programatica.VerySimpleLogger</RepositoryUrl>
+    <OutputPath>N:\</OutputPath>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
