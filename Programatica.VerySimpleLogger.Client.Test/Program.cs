@@ -8,7 +8,7 @@ namespace Programatica.VerySimpleLogger.Client.Test
     {
         static async Task Main(string[] args)
         {
-            VerySimpleLogger.ServerUrl = "https://localhost:44339/api/logs/";
+            VerySimpleLogger.ServerUrl = "http://raspberrypi4:8099/api/logs/";
             await VerySimpleLogger.LogAsync("caller", "level", "message " + DateTime.Now );
 
         }

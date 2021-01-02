@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Log>
+
+@{
+    ViewData["Title"] = "Logs";
+}
+
+@{
+    List<object> sortedCols = new List<object>();
+    sortedCols.Add(new { field = "CreatedDate", direction = "Descending" });
+}
+
+<ejs-grid id="Logs"
+          height="400"
+          allowPaging="true"
+          allowSorting="true"
+          allowFiltering="true"
+          allowSelection="true">
+    <e-grid-pagesettings pageSizes="true" pageSize="10">
+    </e-grid-pagesettings>
+    <e-grid-sortsettings columns="sortedCols"></e-grid-sortsettings>
+    <e-data-manager url="@Url.Action("UrlDatasource", "Logs")" adaptor="UrlAdaptor"></e-data-manager>
+    <e-grid-filterSettings type="Excel"></e-grid-filterSettings>
+    <e-grid-columns>
+        <e-grid-column width="100" field="Id" headerText="Id" isPrimaryKey="true"></e-grid-column>
+        <e-grid-column field="Level" headerText="Level"></e-grid-column>
+        <e-grid-column field="Caller" headerText="Caller"></e-grid-column>
+        <e-grid-column field="Message" headerText="Message"></e-grid-column>
+        <e-grid-column width="170" field="CreatedDate" headerText="Created" customFormat="@(new { type ="date", format="yyyy-MM-dd HH:mm:ss" })" type="date"></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>
+

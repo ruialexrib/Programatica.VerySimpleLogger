@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Programatica.VerySimpleLogger.Controllers
 {
-    public class LogsController : EJ2DataGridBaseController<Log>
+    public class LogManagerController : EJ2DataGridBaseController<Log>
     {
         public readonly IRepository<Log> _logRepository;
 
-        public LogsController(IRepository<Log> logRepository)
+        public LogManagerController(IRepository<Log> logRepository)
         {
             _logRepository = logRepository;
         }
