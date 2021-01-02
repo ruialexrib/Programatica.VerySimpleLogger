@@ -1,35 +1,140 @@
-﻿@{
-    ViewData["Title"] = "Home page";
+﻿@model HomeIndexViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h3 class="display-4">Welcome to <strong>AppSkeleton</strong></h3>
-    <h5>Sky Rocket your new app !!!</h5>
-    <br />
-    <img src="~/img/logo.png" width="250" />
-    <br />
-    <br />
-    <p>
-        A solid skeleton for building out real features with asp.net core, adminlte, repository pattern,<br />
-        entity-framework migrations and syncfusion components.
-    </p>
-    <br />
-    <a href="https://programaticasoftware.visualstudio.com/Programatica.AspNetCore31AppSkeleton/_build/latest?definitionId=20&branchName=main"><img src="https://camo.githubusercontent.com/71db94999bcf803d8c029b8750f02b9d62b2b8f1/68747470733a2f2f70726f6772616d6174696361736f6674776172652e76697375616c73747564696f2e636f6d2f50726f6772616d61746963612e4173704e6574436f72653331417070536b656c65746f6e2f5f617069732f6275696c642f7374617475732f727569616c65787269622e50726f6772616d61746963612e4173704e6574436f72653331417070536b656c65746f6e3f6272616e63684e616d653d6d61696e" /></a>
-    <a href="https://github.com/ruialexrib/Programatica.AspNetCore31AppSkeleton/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/3ccf4c50a1576b0dd30b286717451fa56b783512/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d79656c6c6f772e737667" /></a>
-    <br />
-    <br />
-    <p>Learn more at <a href="https://github.com/ruialexrib/Programatica.AspNetCore31AppSkeleton">github project repository</a>.</p>
-    <br />
-    <a href="https://www.buymeacoffee.com/ruialexrib" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 50px !important;"></a>
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fas fa-clipboard-list"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">All logs count</span>
+                <span class="info-box-number">@Model.AllCount <small>logs</small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fas fa-bomb"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Error logs count</span>
+                <span class="info-box-number">@Model.ErrorCount <small>logs</small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <!-- fix for small devices only -->
+    <div class="clearfix visible-sm-block"></div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fas fa-exclamation-circle"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Info logs count</span>
+                <span class="info-box-number">@Model.InfoCount <small>logs</small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fas fa-bug"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Debug logs count</span>
+                <span class="info-box-number">@Model.DebugCount <small>logs</small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
 </div>
+
+<div class="row">
+
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+            <div class="card-header text-bold">
+                Using C# RestSharp
+            </div>
+            <div class="card-body">
+                <pre>
+using Programatica.VerySimpleLogger.Data.Models;
+using RestSharp;
+
+var client = new RestClient();
+var request = new RestRequest("@Model.ServerUrl", Method.POST).AddJsonBody(log);
+await client.ExecuteAsync(request);
+    </pre>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/dotnet/aspnetcore" class="btn btn-success">Go to nuget package</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+            <div class="card-header text-bold">
+                Using C# Programatica.VerySimpleLogger.Client
+            </div>
+            <div class="card-body">
+                <pre>
+using Programatica.VerySimpleLogger.Data.Models;
+using System.Threading.Tasks;
+
+VerySimpleLogger.ServerUrl = "@Model.ServerUrl";
+await VerySimpleLogger.LogAsync("Main", LogLevelEnum.Info, "Just another info message");
+    </pre>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/dotnet/aspnetcore" class="btn btn-success">Go to nuget package</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header text-bold">
+                Using Curl command line
+            </div>
+            <div class="card-body">
+                <pre>
+curl -X POST -H "Content-Type: application/json" -d \
+'{"Caller":"caller", "Level":1, "Message":"message", "CreatedDate":"2021-01-02 03:30:00"}' \
+@Model.ServerUrl
+    </pre>
+            </div>
+            <div class="card-footer">
+                <a href="https://curl.se/docs/manpage.html?data1=dwnmop" class="btn btn-success">Go to man page</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @section Scripts {
 
     <script type="text/javascript">
 
         $(document).ready(function () {
-            global.toastinfo("Database ConnectionString:<br>" + _page.connectionString);
+            //global.toastinfo("Database ConnectionString:<br>" + _page.connectionString);
         });
 
-     </script>
+    </script>
 }

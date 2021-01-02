@@ -1,5 +1,4 @@
 ﻿using Programatica.VerySimpleLogger.Data.Models;
-using System;
 using System.Threading.Tasks;
 
 namespace Programatica.VerySimpleLogger.Client.Test
@@ -8,15 +7,8 @@ namespace Programatica.VerySimpleLogger.Client.Test
     {
         static async Task Main(string[] args)
         {
-            VerySimpleLogger.ServerUrl = "http://raspberrypi4:8099/api/logs/";
-
-            for (int i = 0; i < 10000; i++)
-            {
-                await VerySimpleLogger.LogAsync("caller", "level", Guid.NewGuid().ToString());
-            }
-
-            
-
+            VerySimpleLogger.ServerUrl = "https://localhost:44339/api/logs/";
+            await VerySimpleLogger.LogAsync("Main", LogLevelEnum.Debug, "Just another info message");
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Programatica.VerySimpleLogger.Client
     {
         public static string ServerUrl { get; set; }
 
-        public static async Task LogAsync(string caller, string level, string message)
+        public static async Task LogAsync(string caller, LogLevelEnum level, string message)
         {
             var log = new Log
             {
