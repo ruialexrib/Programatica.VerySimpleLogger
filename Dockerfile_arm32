@@ -12,6 +12,8 @@ COPY *.sln .
 COPY Programatica.VerySimpleLogger/*.csproj ./Programatica.VerySimpleLogger/
 COPY Programatica.VerySimpleLogger.Data/*.csproj ./Programatica.VerySimpleLogger.Data/
 COPY Programatica.VerySimpleLogger.Data.Migrations/*.csproj ./Programatica.VerySimpleLogger.Data.Migrations/
+COPY Programatica.VerySimpleLogger.Client/*.csproj ./Programatica.VerySimpleLogger.Client/
+COPY Programatica.VerySimpleLogger.Client.Test/*.csproj ./Programatica.VerySimpleLogger.Client.Test/
 
 RUN dotnet restore 
 
