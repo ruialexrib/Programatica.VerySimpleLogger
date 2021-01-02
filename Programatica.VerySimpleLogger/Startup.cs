@@ -28,10 +28,28 @@ namespace Programatica.VerySimpleLogger
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app, 
-            IWebHostEnvironment env, 
+            IWebHostEnvironment env,
+            IHostApplicationLifetime appLifetime,
             ILogger<Startup> logger, 
             IDbContext context)
         {
+
+            appLifetime.ApplicationStarted.Register(() =>
+            {
+                logger.LogInformation("VerySimpleLogger started.");
+            });
+
+            appLifetime.ApplicationStopping.Register(() =>
+            {
+                logger.LogInformation("VerySimpleLogger is stopping...");
+            });
+
+            appLifetime.ApplicationStopped.Register(() =>
+            {
+                logger.LogInformation("VerySimpleLogger stopped.");
+            });
+
+
             //https://stackoverflow.com/questions/42355481/auto-create-database-in-entity-framework-core
             //logger.LogInformation("Migrating database.");
             //context.Database.Migrate();
